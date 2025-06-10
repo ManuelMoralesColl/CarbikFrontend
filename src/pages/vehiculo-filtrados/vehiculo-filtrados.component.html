@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vehículos filtrados</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-button expand="block" color="medium" [routerLink]="['/home']">
+  🏠 Volver a Inicio
+</ion-button>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let vehiculo of vehiculos">
+      <ion-avatar>
+    <img [src]="vehiculo.usuario?.fotoPerfil? (backendUrl + vehiculo.usuario?.fotoPerfil) : '/assets/default-user.png'">   
+    </ion-avatar>
+  <h2>
+    <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
+      {{ vehiculo.usuario?.nombreUsuario }}
+    </a>
+  </h2>
+      <img 
+      *ngFor="let foto of vehiculo.fotos" 
+      [src]="backendUrl + foto.url" 
+      alt="Foto de publicación" 
+      style="width: 100%; margin-bottom: 10px;" />      <ion-label>
+        <h2>{{ vehiculo.modelo }} - {{ vehiculo.marca }}</h2>
+        <p>{{ vehiculo.descripcion }}</p>
+        <p><strong>Precio:</strong> {{ vehiculo.precio }} €</p>
+      </ion-label>
+    </ion-item >
+    
+  </ion-list>
+</ion-content>

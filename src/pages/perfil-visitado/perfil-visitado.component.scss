@@ -1,0 +1,221 @@
+/* Estructura base */
+ion-app,
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ion-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ion-header {
+  flex: 0 0 auto;
+}
+
+ion-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+/* Header personalizado */
+.header-custom ion-toolbar {
+  --background: #ffffff;
+  --min-height: 68px;
+  padding: 0;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 1rem;
+  height: 68px;
+}
+
+.header-btn {
+  background: linear-gradient(90deg, #f3f4f6, #e5e7eb);
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(59, 130, 246, 0.07);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.header-btn:hover {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.header-btn i {
+  color: inherit;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title img {
+  max-height: 42px;
+  object-fit: contain;
+}
+
+/* Perfil */
+.perfil-header {
+  background: #fff;
+  padding: 2rem 1rem 1.5rem;
+  margin: 1rem auto;
+  max-width: 400px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(59, 130, 246, 0.08);
+}
+
+.perfil-foto {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+  border: 3px solid #3b82f6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.perfil-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perfil-header h2 {
+  margin: 0.2rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.perfil-username {
+  color: #3b82f6;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.perfil-email {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.seguidores-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.seguidores-container div {
+  text-align: center;
+}
+
+.seguidores-container strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+
+.seguidores-container span {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Botón seguir */
+.social-btn.seguir {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+  padding: 0.75rem 1.4rem;
+  border-radius: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.13);
+}
+
+.social-btn.seguir:hover {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  transform: scale(1.05);
+}
+/* Publicaciones y Vehículos */
+.publicacion-grid,
+.vehiculo-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* por defecto 1 columna */
+  gap: 1rem;
+  padding: 0 1rem 2rem;
+}
+
+/* A partir de 768px: 3 columnas fijas */
+@media (min-width: 768px) {
+  .publicacion-grid,
+  .vehiculo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.publicacion-card-wrapper,
+.vehiculo-card-wrapper {
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+ion-card.publicacion-card,
+ion-card.vehiculo-card {
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+ion-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.publicacion-info,
+.vehiculo-info {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.publicacion-texto,
+.vehiculo-texto {
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: #374151;
+}

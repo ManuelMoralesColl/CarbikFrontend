@@ -1,0 +1,212 @@
+<!-- Asegúrate de tener Font Awesome en tu index.html -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+<ion-header class="header-custom">
+  <ion-toolbar>
+    <div class="header-container">
+      <button class="header-btn header-left" [routerLink]="['/home']">
+        <i class="fas fa-user-friends"></i>
+        <span>Global</span>
+      </button>
+
+      <div class="header-title">
+        <img src="/assets/logoRueda.png" alt="" />
+      </div>
+
+      <button class="header-btn cerrar-sesion" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding main-feed">
+  <ion-grid fixed>
+    <ion-row align-items-start>
+      <!-- Columna Izquierda: Buscador y resultados -->
+      <ion-col size="12" size-md="3" class="feed-search-col">
+        <div class="search-box">
+          <div class="buscador-lateral">
+            <input
+              type="text"
+              placeholder="🔍 Buscar usuarios..."
+              [(ngModel)]="query"
+              (input)="buscar()"
+              aria-label="Buscar usuarios"
+            />
+            <button class="btn-buscar" (click)="buscar()">
+              Buscar usuario
+            </button>
+          </div>
+          <ion-list class="resultados-list" *ngIf="resultados.length > 0">
+            <ion-item *ngFor="let usuario of resultados">
+              <ion-avatar slot="start">
+                <img
+                  [src]="
+                    usuario.fotoPerfil
+                      ? backendUrl + usuario.fotoPerfil
+                      : '/assets/default-user.png'
+                  "
+                />
+              </ion-avatar>
+              <ion-label>
+                <h2>{{ usuario.nombreUsuario }}</h2>
+                <p>{{ usuario.correo }}</p>
+                <ion-button
+                  fill="clear"
+                  class="btn-ver"
+                  [routerLink]="['/perfilUsuario', usuario.id]"
+                  >Ver</ion-button
+                >
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+
+      <!-- Columna central: Publicaciones -->
+      <ion-col size="12" size-md="6" class="feed-main">
+        <ion-card *ngFor="let pub of publicaciones" class="publicacion-card">
+          <div class="pub-header-row">
+            <ion-avatar>
+              <img
+                [src]="
+                  pub.usuario.fotoPerfil
+                    ? backendUrl + pub.usuario.fotoPerfil
+                    : '/assets/default-user.png'
+                "
+              />
+            </ion-avatar>
+            <div class="pub-user-info">
+              <a
+                [routerLink]="['/perfilUsuario', pub.usuario.id]"
+                class="pub-username"
+              >
+                {{ pub.usuario?.nombreUsuario }}
+              </a>
+            </div>
+          </div>
+          <div class="pub-fotos" *ngIf="pub.fotos && pub.fotos.length">
+            <img *ngFor="let foto of pub.fotos" [src]="backendUrl + foto.url" />
+          </div>
+          <div class="pub-footer">
+            <div class="pub-caption">
+              {{ pub.pieDeFoto }}
+            </div>
+            <div class="pub-date">
+              {{ pub.fechaPublicacion | date : "short" }}
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <!-- Columna derecha: Acciones y filtros -->
+      <ion-col size="12" size-md="3" class="feed-right">
+        <div class="acciones-usuario">
+          <button class="social-btn perfil" (click)="irAlPerfil()">
+            <i class="fas fa-user-circle"></i>
+            Ver Perfil
+          </button>
+          <button
+            class="social-btn publicar"
+            [routerLink]="['/crear-publicacion']"
+          >
+            <i class="fas fa-camera"></i>
+            Nueva Publicación
+          </button>
+          <button
+            class="social-btn vehiculo"
+            [routerLink]="['/crear-Vehiculo']"
+          >
+            <i class="fas fa-car"></i>
+            Nuevo Vehículo
+          </button>
+          <button
+            class="social-btn venta"
+            [routerLink]="['/vehiculos-en-venta']"
+          >
+            <i class="fas fa-tags"></i>
+            Vehículos en Venta
+          </button>
+          <div class="filtros-box">
+            <label for="categoriaPadre" class="filtro-label">
+              <i class="fas fa-car filtro-icon"></i> Categoría principal
+            </label>
+            <select
+              id="categoriaPadre"
+              [(ngModel)]="idPadreSeleccionado"
+              (change)="limpiarHija()"
+              class="filtro-select"
+            >
+              <option value="" disabled selected>
+                Selecciona una categoría principal
+              </option>
+              <option
+                *ngFor="let seccion of seccionesPadre"
+                [value]="seccion.id"
+              >
+                {{ seccion.nombre }}
+              </option>
+            </select>
+
+            <label
+              *ngIf="idPadreSeleccionado"
+              for="subcategoria"
+              class="filtro-label"
+            >
+              <i class="fas fa-tags filtro-icon"></i> Subcategoría
+            </label>
+            <select
+              *ngIf="idPadreSeleccionado"
+              id="subcategoria"
+              [(ngModel)]="idHijaSeleccionada"
+              class="filtro-select"
+            >
+              <option value="" disabled selected>
+                Selecciona una subcategoría
+              </option>
+              <option
+                *ngFor="let hija of seccionesHijas[idPadreSeleccionado]"
+                [value]="hija.id"
+              >
+                {{ hija.nombre }}
+              </option>
+            </select>
+
+            <button
+              class="social-btn filtro-btn-min"
+              (click)="buscarSecciones()"
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="footer-custom">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="#" class="footer-link">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="footer-link">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="footer-link">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
+    <div class="footer-center">
+      <span>© 2025 CARBIK</span>
+    </div>
+    <div class="footer-right">
+      <a href="#" class="footer-link">Política de Privacidad</a>
+      <a href="#" class="footer-link">Contacto</a>
+    </div>
+  </div>
+</ion-footer>

@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<ion-header class="header-custom">
+  <ion-toolbar>
+    <div class="header-container">
+      <button class="header-btn volver-btn" [routerLink]="['/home']">
+        <i class="fas fa-home"></i>
+      </button>
+
+      <div class="header-title">
+        <img src="/assets/logoRueda.png" alt="">
+      </div>
+
+      <div class="header-placeholder"></div> <!-- Para balancear el diseño -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding perfil-content" *ngIf="usuario">
+  <div class="perfil-header">
+    <div class="perfil-foto">
+      <img [src]="usuario.fotoPerfil ? (backendUrl + usuario.fotoPerfil) : '/assets/default-user.png'">
+    </div>
+    <h2>{{ usuario.nombre }} {{ usuario.apellidos }}</h2>
+    <p class="perfil-username">{{ usuario.nombreUsuario }}</p>
+    <p class="perfil-email">{{ usuario.correo }}</p>
+    <div class="seguidores-container">
+      <div>
+        <strong>{{ siguiendoCount }}</strong>
+        <span>Siguiendo</span>
+      </div>
+      <div>
+        <strong>{{ seguidoresCount }}</strong>
+        <span>Seguidores</span>
+      </div>
+    </div>
+    <button class="social-btn seguir" (click)="seguirODejar()">
+      <i class="fas" [ngClass]="yaLoSigo ? 'fa-user-minus' : 'fa-user-plus'"></i>
+      {{ yaLoSigo ? 'Dejar de seguir' : 'Seguir' }}
+    </button>
+  </div>
+
+  <!-- Publicaciones del usuario visitado -->
+  <h3>Publicaciones</h3>
+  <div *ngIf="publicaciones.length === 0; else publicacionesList">
+    <p>Este usuario no ha hecho publicaciones.</p>
+  </div>
+  <ng-template #publicacionesList>
+    <div class="publicacion-grid">
+      <div class="publicacion-card-wrapper" *ngFor="let pub of publicaciones">
+        <ion-card class="publicacion-card">
+          <img *ngFor="let foto of pub.fotos" [src]="backendUrl + foto.url" alt="Foto de publicación" />
+        </ion-card>
+        <div class="publicacion-info">
+          <div class="publicacion-texto">
+            <strong>{{ pub.pieDeFoto }}</strong>
+            <span>{{ pub.fechaPublicacion | date }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Vehículos del usuario visitado -->
+  <h3>Vehículos</h3>
+  <div *ngIf="vehiculos.length === 0; else vehiculosList">
+    <p>No ha añadido vehículos todavía.</p>
+  </div>
+  <ng-template #vehiculosList>
+    <div class="vehiculo-grid">
+      <div class="vehiculo-card-wrapper" *ngFor="let veh of vehiculos">
+        <ion-card class="vehiculo-card">
+          <img *ngFor="let foto of veh.fotos" [src]="backendUrl + foto.url" alt="Foto del vehículo" />
+        </ion-card>
+        <div class="vehiculo-info">
+          <div class="vehiculo-texto">
+            <strong>{{ veh.marca }} {{ veh.modelo }}</strong>
+            <span>{{ veh.precio }} €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-content>

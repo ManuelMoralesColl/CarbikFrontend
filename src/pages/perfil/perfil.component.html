@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<ion-app>
+<ion-header class="header-custom">
+  <ion-toolbar>
+    <div class="header-container">
+    <button class="header-btn ajustes-btn" (click)="toggleAjustes()">
+    <i class="fas fa-cog"></i>
+  </button>
+
+      <div class="header-title">
+        <img src="/assets/logoRueda.png" alt="">
+      </div>
+
+      <button class="header-btn cerrar-sesion" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content class="ion-padding perfil-content" *ngIf="usuario">
+    <div class="perfil-header">
+      <div class="perfil-foto">
+        <img [src]="usuario.fotoPerfil ? (backendUrl + usuario.fotoPerfil) : '/assets/default-user.png'">
+      </div>
+      <h2>{{ usuario.nombre }} {{ usuario.apellidos }}</h2>
+      <p class="perfil-username">{{ usuario.nombreUsuario }}</p>
+      <p class="perfil-email">{{ usuario.correo }}</p>
+      <div class="seguidores-container">
+        <div>
+          <strong>{{ siguiendoCount }}</strong>
+          <span>Siguiendo</span>
+        </div>
+        <div>
+          <strong>{{ seguidoresCount }}</strong>
+          <span>Seguidores</span>
+        </div>
+      </div>
+      <button class="social-btn cerrar-sesion" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+      </button>
+    </div>
+
+    <!-- Acciones principales -->
+    <div class="perfil-acciones">
+      <button class="social-btn publicar" [routerLink]="['/crear-publicacion']">
+        <i class="fas fa-camera"></i> Nueva Publicación
+      </button>
+      <button class="social-btn vehiculo" [routerLink]="['/crear-Vehiculo']">
+        <i class="fas fa-car"></i> Nuevo Vehículo
+      </button>
+      <button class="social-btn volver" [routerLink]="['/home']">
+        <i class="fas fa-home"></i> Volver a Inicio
+      </button>
+       
+    </div>
+
+    <!-- Sección de Ajustes -->
+   <ion-card *ngIf="mostrarAjustes" class="ajustes-card">
+  <ion-card-header>
+      <i class="fas fa-cog"></i> Configuración de Perfil
+  </ion-card-header>
+     <div class="ajustes-content">
+    <ion-item>
+      <ion-label position="floating"><i class="fas fa-user"></i> Nombre</ion-label>
+      <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input [(ngModel)]="usuario.apellidos"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre de Usuario</ion-label>
+        <ion-input [(ngModel)]="usuario.nombreUsuario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input [(ngModel)]="usuario.correo" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nueva Contraseña</ion-label>
+        <ion-input [(ngModel)]="usuario.contrasena" type="password"></ion-input>
+      </ion-item>
+     <ion-item>
+  <ion-label>Cambiar foto de perfil</ion-label>
+  <div class="file-input-wrapper">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*"/>
+  </div>
+</ion-item>
+      <ion-item>
+        <ion-label>Cuenta privada</ion-label>
+        <ion-toggle [(ngModel)]="usuario.privado"></ion-toggle>
+      </ion-item>
+      <div class="ajustes-actions">
+      <button class="social-btn guardar" (click)="guardarCambiosUsuario()">
+        <i class="fas fa-save"></i> Guardar Cambios
+      </button>
+      <button class="social-btn eliminar" (click)="eliminarCuenta()">
+        <i class="fas fa-trash"></i> Eliminar Cuenta
+      </button>
+          </div>
+
+    </div>
+</ion-card>
+
+    <!-- Mi Garage -->
+    <h3>Mi Garage Virtual</h3>
+    <div *ngIf="vehiculos.length === 0; else vehiculosList">
+      <p>No has añadido ningún vehículo todavía.</p>
+    </div>
+    <ng-template #vehiculosList>
+  <div class="vehiculo-grid">
+    <div class="vehiculo-card-wrapper" *ngFor="let veh of vehiculos">
+      <ion-card class="vehiculo-card">
+        <img *ngFor="let foto of veh.fotos" [src]="backendUrl + foto.url" alt="Foto del vehículo" />
+      </ion-card>
+      <div class="vehiculo-info">
+        <div class="vehiculo-texto">
+          <strong>{{ veh.marca }} {{ veh.modelo }}</strong>
+          <span>{{ veh.precio }} €</span>
+        </div>
+        <div class="vehiculo-botones">
+          <button class="social-btn editar" [routerLink]="['/editar-vehiculo', veh.id]">
+            <i class="fas fa-pen"></i> Editar
+          </button>
+          <button class="social-btn eliminar" (click)="eliminarVehiculo(veh.id)">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+ 
+    <!-- Mis Publicaciones -->
+    <h3>Mis Publicaciones</h3>
+    <div *ngIf="publicaciones.length === 0; else publicacionesList">
+      <p>No has hecho ninguna publicación todavía.</p>
+    </div>
+    <ng-template #publicacionesList>
+  <div class="publicacion-grid">
+    <div class="publicacion-card-wrapper" *ngFor="let pub of publicaciones">
+      <ion-card class="publicacion-card">
+        <img *ngFor="let foto of pub.fotos" [src]="backendUrl + foto.url" alt="Foto de publicación" />
+      </ion-card>
+      <div class="publicacion-info">
+        <div class="publicacion-texto">
+          <strong>{{ pub.pieDeFoto }}</strong>
+          <span>{{ pub.fechaPublicacion | date }}</span>
+        </div>
+        <div class="publicacion-botones">
+          <button class="social-btn editar" (click)="editarPublicacion(pub.id)">
+            <i class="fas fa-pen"></i> Editar
+          </button>
+          <button class="social-btn eliminar" (click)="eliminarPublicacion(pub.id)">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+  </ion-content>

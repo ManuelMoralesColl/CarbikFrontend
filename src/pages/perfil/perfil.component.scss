@@ -1,0 +1,430 @@
+ion-app,
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ion-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ion-header {
+  flex: 0 0 auto; /* header fijo */
+}
+
+ion-content {
+  flex: 1 1 auto; /* que crezca y ocupe resto */
+  overflow-y: auto;
+}
+.header-custom {
+  margin-top: 16px;
+  ion-toolbar {
+    padding-top: 12px;
+    box-sizing: border-box;
+    --background: #fff;
+    --min-height: 68px;
+    box-shadow: 0 2px 18px rgba(59, 130, 246, 0.08);
+    border-bottom: 1.5px solid #e0e7ef;
+    position: relative;
+    padding: 0;
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 1.2rem;
+      position: relative;
+    }
+
+    .header-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.55em;
+      padding: 0.55em 1.1em;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #f9fafb 0%, #e0e7ef 100%);
+      color: #222;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.07);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.18s, transform 0.12s;
+      outline: none;
+
+      i {
+        font-size: 1.2em;
+        transition: color 0.2s;
+      }
+
+      &:hover,
+      &:focus {
+        background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+        transform: translateY(-2px) scale(1.04);
+
+        i {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.ajustes-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  i {
+    font-size: 1.3em !important;
+    margin-right: 0 !important;
+  }
+
+  &:hover {
+    transform: rotate(30deg) scale(1.1) !important;
+  }
+}
+
+/* Estilo mejorado para la tarjeta de ajustes */
+.ajustes-card {
+  margin: 1.5rem auto;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  background: #ffffff;
+  overflow: hidden;
+
+
+  ion-card-header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding: 1.2rem;
+    }
+  .ajustes-content {
+    padding: 2rem 1.5rem;
+  }
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --border-radius: 8px;
+    margin-bottom: 1rem;
+    --background: #f8fafc;
+
+    ion-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #3b82f6;
+      font-weight: 500;
+
+      i {
+        font-size: 0.9em;
+        color: #64748b;
+      }
+    }
+
+    ion-input {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+      background: white;
+      border-radius: 8px;
+      margin-top: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  input[type="file"] {
+    width: auto;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .ajustes-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+    button {
+      flex: 1;
+      min-width: 200px;
+    }
+  }
+}
+
+/* Animación para el icono de ajustes */
+@keyframes rotateCog {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ajustes-btn.active i {
+  animation: rotateCog 1s ease-in-out;
+}
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Montserrat", "Poppins", Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #a9a6a6;
+  user-select: none;
+  text-transform: uppercase;
+  text-shadow: 0 3px 12px rgba(37, 99, 235, 0.15);
+  white-space: nowrap;
+  pointer-events: none; /* Para que no interfiera con clicks */
+  max-width: 60%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; // asegura que el contenedor se expanda
+  img {
+    max-height: 48px; // ajusta según tu diseño
+    height: auto;
+    width: auto;
+    object-fit: contain; // evita recortes
+  }
+}
+
+.perfil-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.09);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 0 auto 2rem auto; /* Centrar horizontalmente y margen abajo */
+
+  /* Ajustar ancho máximo para que no sea muy ancho */
+  max-width: 400px; /* O cualquier ancho que te guste */
+  width: 90%; /* O un % para que responda en móviles */
+
+  .perfil-foto {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 3px solid #3b82f6;
+    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.13);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+  }
+  .perfil-username {
+    color: #3b82f6;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+  .perfil-email {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .seguidores-container {
+    display: flex;
+    gap: 2.5rem;
+    margin: 1.2rem 0;
+    div {
+      text-align: center;
+      strong {
+        font-size: 1.22rem;
+        color: #2563eb;
+        font-weight: 700;
+      }
+      span {
+        color: #7e8594;
+        font-size: 0.97rem;
+      }
+    }
+  }
+}
+
+.perfil-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.9em 1.3em;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.13);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+  margin-bottom: 0.6rem;
+
+  i {
+    font-size: 1.3em;
+    transition: color 0.3s;
+  }
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(135deg, #4338ca, #4f46e5);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    color: #dbeafe;
+    i {
+      color: #dbeafe;
+    }
+  }
+
+  &.cerrar-sesion {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    color: #fff;
+    &:hover,
+    &:focus {
+      background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.16);
+    }
+    i {
+      color: #fff;
+    }
+  }
+  &.publicar i {
+    color: #f59e42;
+  }
+  &.vehiculo i {
+    color: #10b981;
+  }
+  &.volver i {
+    color: #3b82f6;
+  }
+  &.guardar i {
+    color: #10b981;
+  }
+  &.eliminar {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    color: #fff;
+    i {
+      color: #fff;
+    }
+  }
+  &.editar i {
+    color: #f59e42;
+  }
+}
+
+.vehiculo-grid,
+.publicacion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  justify-content: center;
+}
+
+.vehiculo-card-wrapper,
+.publicacion-card-wrapper {
+  max-width: 300px;
+
+  background: #d1d1d3; // Gris claro, puedes ajustar el tono
+  border-radius: 16px;
+  padding: 1rem 1.1rem 0.7rem 1.1rem;
+  color: black;
+  margin-top: 0.5rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vehiculo-card img,
+.publicacion-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.vehiculo-info,
+.publicacion-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.vehiculo-texto,
+.publicacion-texto {
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.vehiculo-botones,
+.publicacion-botones {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .perfil-content {
+    padding: 0.5rem;
+  }
+  .perfil-header {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+  .perfil-acciones {
+    gap: 0.5rem;
+  }
+  .vehiculo-card,
+  .publicacion-card {
+    img {
+      max-height: 180px;
+    }
+  }
+}

@@ -1,0 +1,232 @@
+/* Asegúrate de tener este import en tu index.html */
+/* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> */
+
+.login-container {
+  --background: transparent;
+  height: 100vh;
+  background-image: url("/assets/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+
+  .header-title {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+
+    h1 {
+      color: white;
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    height: 100%;
+    padding-top: 100px;
+    position: relative;
+    z-index: 1;
+
+    .text-section {
+      flex: 1;
+      padding: 20px 40px;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 20px;
+      backdrop-filter: blur(2px);
+      font-weight: 500;
+
+      p {
+        margin-bottom: 8px;
+        line-height: 1.4;
+        font-size: 1rem;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .form-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+
+      .form-box {
+        width: 100%;
+        max-width: 400px;
+        background-color: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(3px);
+        border-radius: 10px;
+        padding: 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+        .form-tabs {
+          display: flex;
+          background-color: rgba(255, 255, 255, 0.7);
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          overflow: hidden;
+          font-family: "Montserrat", sans-serif;
+
+          .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+
+            &.active {
+              color: #1976d2; /* Cambiado a azul para coincidir con los botones */
+              background-color: rgba(255, 255, 255, 0.7);
+              border-bottom: 3px solid #1976d2;
+            }
+          }
+        }
+        .auth-form {
+          padding: 20px;
+
+          ion-item {
+            --background: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 0, 0, 0.1);
+            margin-bottom: 5px;
+            border-radius: 8px;
+            --padding-start: 0;
+          }
+
+          ion-button.submit-btn {
+            --background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+            --background-activated: linear-gradient(
+              135deg,
+              #1e88e5 0%,
+              #1565c0 100%
+            );
+            --background-focused: linear-gradient(
+              135deg,
+              #1e88e5 0%,
+              #1565c0 100%
+            );
+            --background-hover: linear-gradient(
+              135deg,
+              #64b5f6 0%,
+              #42a5f5 100%
+            );
+            --color: white;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            margin: 20px auto 0;
+            display: block;
+            width: 90%;
+            max-width: 300px;
+            height: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+
+            &::part(native) {
+              box-shadow: var(--box-shadow);
+              transition: var(--transition);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            &:hover::part(native) {
+              transform: translateY(-2px);
+              box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+              background: var(--background-hover);
+            }
+
+            &:active::part(native) {
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.error-message {
+  color: #eb445a;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  padding: 0 16px;
+}
+/* Responsive Design */
+@media (max-width: 992px) {
+  .login-container {
+    .header-title h1 {
+      font-size: 2.8rem;
+      top: 20px;
+    }
+
+    .content-wrapper {
+      flex-direction: column;
+      padding-top: 80px;
+
+      .text-section {
+        padding: 15px 20px;
+
+        p {
+          max-width: 100%;
+          font-size: 0.95rem;
+          margin-bottom: 6px;
+        }
+      }
+
+      .form-section {
+        padding: 20px 15px;
+
+        .form-box {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .login-container {
+    .header-title h1 {
+      font-size: 2.2rem;
+    }
+
+    .content-wrapper {
+      padding-top: 70px;
+    }
+  }
+}

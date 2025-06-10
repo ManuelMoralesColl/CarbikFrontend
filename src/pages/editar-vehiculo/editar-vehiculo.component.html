@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Vehículo</ion-title>
+      <ion-button expand="full" color="medium" (click)="salir()">
+      Perfil
+  </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+<ion-item *ngIf="imagenesSubidas.length > 0">
+          <ion-label position="stacked">Imagen actual</ion-label>
+          <img [src]="backendUrl+imagenesSubidas[0]" width="100%">
+        </ion-item>
+        <!-- Igual que en crear, excepto que no se suben imágenes -->
+        <ion-item>
+          <ion-label position="stacked">Modelo</ion-label>
+<ion-input [(ngModel)]="modelo" name="modelo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Marca</ion-label>
+<ion-input [(ngModel)]="marca" name="marca"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Año</ion-label>
+<ion-input type="number" [(ngModel)]="ano" name="ano"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+<ion-textarea [(ngModel)]="descripcion" name="descripcion"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Información Adicional</ion-label>
+<ion-textarea [(ngModel)]="infoAdicional" name="infoAdicional"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+<ion-input type="number" [(ngModel)]="precio" name="precio"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Categoría principal</ion-label>
+          <ion-select [(ngModel)]="idPadreSeleccionado" interface="popover" name="categoria">
+            <ion-select-option *ngFor="let seccion of seccionesPadre" [value]="seccion.id">
+              {{ seccion.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="idPadreSeleccionado">
+          <ion-label position="stacked">Subcategoría</ion-label>
+          <ion-select [(ngModel)]="idSeccionSeleccionada" interface="popover" name="subcategoria">
+            <ion-select-option
+              *ngFor="let sub of seccionesHijas[idPadreSeleccionado]"
+              [value]="sub.id">
+              {{ sub.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+                <ion-button expand="full" (click)="guardarCambios()">Guardar Cambios</ion-button>
+
+        <ion-item lines="none">
+          <ion-label>En venta</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="enVenta" name="enVenta"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

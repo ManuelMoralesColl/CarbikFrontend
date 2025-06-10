@@ -1,0 +1,156 @@
+// variables opcionales
+$primary-color: #3a86ff;
+$accent-color: #ffbe0b;
+$background-color: #f9f9f9;
+$text-color: #333;
+$footer-bg: #202020;
+$footer-text: #ccc;
+
+.header-custom {
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  ion-toolbar {
+    --background: white;
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .header-btn {
+    background: none;
+    border: none;
+    color: $primary-color;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+
+    i {
+      font-size: 1.1rem;
+    }
+
+    &.cerrar-sesion {
+      color: #e63946;
+    }
+  }
+
+  .header-title img {
+    height: 40px;
+    object-fit: contain;
+  }
+}
+
+.main-feed {
+  background-color: $background-color;
+
+  ion-card.vehiculo-card {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    ion-card-header {
+      padding-bottom: 0;
+
+      ion-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $text-color;
+      }
+
+      ion-card-subtitle {
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 4px;
+      }
+    }
+
+    ion-card-content {
+      p {
+        font-size: 0.9rem;
+        color: $text-color;
+        margin-bottom: 1rem;
+      }
+
+      ion-button {
+        --border-color: $primary-color;
+        --color: $primary-color;
+        font-weight: 500;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+.footer-custom {
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: 1rem 1.5rem;
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-link {
+      color: $footer-text;
+      transition: color 0.2s;
+
+      &:hover {
+        color: white;
+      }
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+// Media Queries
+@media (max-width: 768px) {
+  .header-container,
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+
+    .header-btn,
+    .footer-link {
+      justify-content: center;
+    }
+  }
+
+  .main-feed ion-col {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
