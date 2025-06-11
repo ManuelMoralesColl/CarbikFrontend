@@ -11,7 +11,6 @@ import {
   IonGrid,
   IonRow,
   IonToolbar,
-  IonTitle,
   IonItem,
   IonInput,
   IonTextarea,
@@ -34,7 +33,6 @@ import { Router, RouterLink } from '@angular/router';
     IonGrid,
     IonRow,
     IonToolbar,
-    IonTitle,
     IonItem,
     IonInput,
     IonTextarea,
@@ -140,6 +138,8 @@ idSeccionSeleccionada: number | null = null;  modelo = '';
           alert('Error al crear vehículo');
         }
       });
+          this.salir();
+
   }
 
   //SECCIONES

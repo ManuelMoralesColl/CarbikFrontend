@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {
-  IonLabel,
-  IonItem,
+
   IonHeader,
   IonToolbar,
-  IonTitle,
+  
   IonContent,
-  IonList,
+  
   IonAvatar,
-  IonButton, IonGrid, IonRow, IonCol, IonFooter, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+   IonGrid, IonRow, IonCol, IonFooter, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
+import { CommonModule, NgFor } from '@angular/common';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
@@ -20,18 +19,14 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./vehiculo-filtrados.component.scss'],
   standalone: true,
   imports: [IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonFooter, IonCol, IonRow, IonGrid, 
-    IonButton,
     IonAvatar,
-    IonList,
+  
     IonContent,
-    IonTitle,
-    IonLabel,
-    IonItem,
+
     IonHeader,
     IonToolbar,
     IonHeader,
     NgFor,
-    NgIf,
     RouterLink,
     CommonModule
   ],

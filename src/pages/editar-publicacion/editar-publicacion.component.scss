@@ -144,3 +144,68 @@ ion-content {
     }
   }
 }
+
+.footer-custom {
+  width: 100%;
+  background: #fff;
+  border-top: 1.5px solid #e0e7ef;
+  box-shadow: 0 -2px 18px rgba(59,130,246,0.07);
+  padding: 0;
+   position: fixed;
+  left: 0;
+  bottom: 0; 
+  z-index: 1000;
+}
+
+.footer-custom .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #6b7280;
+  gap: 1rem;
+}
+
+.footer-custom .footer-left,
+.footer-custom .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.footer-custom .footer-center {
+  flex: 1 1 auto;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 1.5px;
+  font-size: 1.08rem;
+}
+
+.footer-custom .footer-link {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 1.18rem;
+  transition: color 0.2s;
+}
+.footer-custom .footer-link:hover {
+  color: #2563eb;
+}
+.footer-custom .footer-link i {
+  vertical-align: middle;
+  font-size: 1.25em;
+}
+
+@media (max-width: 900px) {
+  .footer-custom .footer-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.7rem 0.5rem;
+  }
+  .footer-custom .footer-center {
+    font-size: 1rem;
+  }
+}

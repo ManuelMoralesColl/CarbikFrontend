@@ -4,16 +4,11 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/models/usuario';
 import { ToastController } from '@ionic/angular';
 import {
-  IonHeader,
   IonItem,
   IonContent,
-  IonToolbar,
-  IonTitle,
   IonLabel,
   IonInput,
   IonButton,
-  IonSegmentButton,
-  IonSegment,
   IonToggle,
 } from '@ionic/angular/standalone';
 import {
@@ -35,20 +30,17 @@ import { AuthService } from 'src/services/auth.service';
     IonToggle,
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
+
     IonContent,
     IonItem,
     IonLabel,
     IonInput,
     IonButton,
-    IonSegment,
-    IonSegmentButton,
+
     ReactiveFormsModule,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   segment: 'login' | 'registro' = 'login';
   registroForm: FormGroup;
   submitted = false;
@@ -80,7 +72,12 @@ export class LoginComponent {
       privado: [false],
     });
   }
-
+  ngOnInit() {
+    const token = this.authService.obtenerToken();
+    if (token) {
+      this.router.navigate(['/home']);
+    }
+  }
   async showToast(message: string, color: string = 'danger') {
     const toast = await this.toastController.create({
       message,

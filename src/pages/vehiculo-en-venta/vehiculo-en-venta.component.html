@@ -51,9 +51,10 @@
         style="width: 100%; margin-bottom: 10px;"/>
           <ion-card-header>
             <ion-card-title>
-              {{ vehiculo.marca }} {{ vehiculo.modelo }}
+              {{ vehiculo.marca }} {{ vehiculo.modelo }} 
             </ion-card-title>
-            <ion-card-subtitle>{{ vehiculo.anio }} | {{ vehiculo.precio | currency:'EUR' }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ vehiculo.ano }} | {{ vehiculo.precio | currency:'EUR' }}</ion-card-subtitle>
+            
           </ion-card-header>
           <ion-card-content>
             <p>{{ vehiculo.descripcion }}</p>
@@ -64,19 +65,25 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
 <ion-footer class="footer-custom">
   <div class="footer-container">
     <div class="footer-left">
-      <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="footer-link"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/_manucoll/" class="footer-link">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://x.com/_manucoll" class="footer-link">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.facebook.com/manuel.moralescoll.35/" class="footer-link">
+        <i class="fab fa-facebook"></i>
+      </a>
     </div>
     <div class="footer-center">
       <span>© 2025 CARBIK</span>
     </div>
     <div class="footer-right">
-      <a href="#" class="footer-link">Política de Privacidad</a>
+      <a class="footer-link"  [routerLink]="['/politicas-privacidad']">Política de Privacidad</a>
     </div>
+   
   </div>
 </ion-footer>

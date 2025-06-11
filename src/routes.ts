@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: 'perfil/:id',
     loadComponent: () =>
       import('./pages/perfil/perfil.component').then((m) => m.PerfilComponent),
+      canActivate: [AuthGuard] 
   },
   {
     path: 'perfilUsuario/:id',
@@ -26,15 +27,24 @@ export const routes: Routes = [
       import('./pages/perfil-visitado/perfil-visitado.component').then(
         (m) => m.PerfilVisitadoComponent
       ),
+            canActivate: [AuthGuard] 
+
   },
-  { path: 'crear-publicacion', component: CrearPublicacionComponent },
-  { path: 'crear-Vehiculo', component: CrearVehiculoComponent },
+  { path: 'crear-publicacion', component: CrearPublicacionComponent,
+          canActivate: [AuthGuard] 
+
+   },
+  
+  { path: 'crear-Vehiculo', component: CrearVehiculoComponent,      canActivate: [AuthGuard] 
+ },
   {
     path: 'siguiendo',
     loadComponent: () =>
       import('./pages/home-siguiendo/home-siguiendo.component').then(
         (m) => m.HomeSiguiendoComponent
       ),
+            canActivate: [AuthGuard] 
+
   },
   {
     path: 'vehiculo-filtrados/:id',
@@ -49,6 +59,8 @@ export const routes: Routes = [
       import('./pages/editar-publicacion/editar-publicacion.component').then(
         (m) => m.EditarPublicacionComponent
       ),
+            canActivate: [AuthGuard] 
+
   },
   {
     path: 'editar-vehiculo/:id',
@@ -56,6 +68,8 @@ export const routes: Routes = [
       import('./pages/editar-vehiculo/editar-vehiculo.component').then(
         (m) => m.EditarVehiculoComponent
       ),
+            canActivate: [AuthGuard] 
+
   },
   {
     path: 'vehiculos-en-venta',
@@ -63,5 +77,15 @@ export const routes: Routes = [
       import('./pages/vehiculo-en-venta/vehiculo-en-venta.component').then(
         (m) => m.VehiculoEnVentaComponent
       ),
+            canActivate: [AuthGuard] 
+
   },
+  {
+    path: 'politicas-privacidad',
+    loadComponent: () =>
+      import('./pages/politicas-privacidad/politicas-privacidad.component').then(
+        (m) => m.PoliticasPrivacidadComponent
+      ),
+  },
+
 ];

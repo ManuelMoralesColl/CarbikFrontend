@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/services/auth.service';
-import { IonButton, IonLabel, IonGrid, IonRow, IonHeader, IonToolbar, IonTitle, IonItem, IonTextarea, IonCol, IonContent, IonApp, IonFooter } from "@ionic/angular/standalone";
+import { IonButton, IonLabel, IonGrid, IonRow, IonHeader, IonToolbar, IonItem, IonTextarea, IonCol, IonContent, IonFooter } from "@ionic/angular/standalone";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './crear-publicaciones.component.html',
   styleUrls: ['./crear-publicaciones.component.scss'],
   standalone: true,
-  imports: [IonFooter, IonApp, 
+  imports: [IonFooter, 
     IonCol, 
     IonHeader,
     IonButton,
@@ -18,7 +18,6 @@ import { Router, RouterLink } from '@angular/router';
     IonGrid,
     IonRow,
     IonToolbar,
-    IonTitle,
     IonItem,
     IonTextarea,
     IonContent,
@@ -71,7 +70,9 @@ export class CrearPublicacionComponent {
       }
     });
   }
-
+ salir() {
+    this.router.navigate(['/perfil/+this.publicacion.usuario?.id]);']);
+  }
   crearPublicacion() {
     const userId = this.authService.getUserIdFromToken();
     const token = this.authService.obtenerToken();
@@ -104,8 +105,7 @@ export class CrearPublicacionComponent {
           alert('Error al crear publicación');
         }
       });
+      this.salir() 
   }
-   salir() {
-    this.router.navigate(['/perfil/+this.publicacion.usuario?.id]);']);
-  }
+  
 }

@@ -31,6 +31,11 @@ export class HomeSiguiendoComponent  implements OnInit {
   constructor(private authService: AuthService, private feedService: FeedService, private router: Router, private perfilService: PerfilService) {}
 
   ngOnInit(): void {
+    const token = this.authService.obtenerToken();
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+  
     this.userId = this.authService.getUserIdFromToken();
     if (this.userId != null) {
       this.cargarFeedSiguiendo();

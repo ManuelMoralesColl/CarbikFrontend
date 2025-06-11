@@ -1,31 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
+
 import {
   IonHeader,
   IonToolbar,
-  IonTitle,
   IonContent,
   IonButton,
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonLabel,
   IonItem,
   IonAvatar,
   IonList,
-  IonInput,
-  IonSelect,
-  IonMenu,
-  IonMenuButton,
-  IonSelectOption,
-  IonButtons,
   IonCol,
   IonGrid,
   IonRow,
-  IonIcon,
-  IonFooter,
-} from '@ionic/angular/standalone';
+  IonFooter } from '@ionic/angular/standalone';
 import { Publicacion } from 'src/models/publicacion.model';
 import { FeedService } from 'src/services/feed.service';
 import { CommonModule } from '@angular/common';
@@ -38,33 +28,23 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [
+  imports: [ 
     IonFooter,
-    IonIcon,
     IonRow,
     IonGrid,
     IonCol,
-    IonButtons,
-    IonInput,
     IonList,
     IonAvatar,
-    IonMenu,
-    IonMenuButton,
     IonItem,
     IonLabel,
     CommonModule,
-    IonCardTitle,
-    IonCardHeader,
     IonCard,
     IonButton,
     IonContent,
-    IonTitle,
     IonToolbar,
     IonHeader,
     RouterLink,
     FormsModule,
-    IonSelect,
-    IonSelectOption,
   ],
 })
 export class HomeComponent implements OnInit {

@@ -59,6 +59,7 @@ export class EditarPublicacionComponent  implements OnInit {
       error: (err) => console.error('Error cargando publicación', err)
     });
   }
+  
   salir() {
     this.router.navigate(['/perfil/+this.publicacion.usuario?.id]);']);
   }
