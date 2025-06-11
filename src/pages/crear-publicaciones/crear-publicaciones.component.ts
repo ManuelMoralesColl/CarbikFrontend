@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/services/auth.service';
-import { IonButton, IonLabel, IonGrid, IonRow, IonHeader, IonToolbar, IonTitle, IonItem, IonTextarea, IonCol, IonContent,  } from "@ionic/angular/standalone";
+import { IonButton, IonLabel, IonGrid, IonRow, IonHeader, IonToolbar, IonTitle, IonItem, IonTextarea, IonCol, IonContent, IonApp, IonFooter } from "@ionic/angular/standalone";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './crear-publicaciones.component.html',
   styleUrls: ['./crear-publicaciones.component.scss'],
   standalone: true,
-  imports: [
+  imports: [IonFooter, IonApp, 
     IonCol, 
     IonHeader,
     IonButton,
@@ -28,6 +28,7 @@ import { Router, RouterLink } from '@angular/router';
     
   ]
 })
+
 export class CrearPublicacionComponent {
   pieDeFoto = '';
   urlImagen: string = '';
@@ -35,7 +36,9 @@ export class CrearPublicacionComponent {
   backendUrl = 'http://localhost:8080/api/archivos';
 
   constructor(private http: HttpClient, private authService: AuthService,private router: Router) {}
-
+  cerrarSesion() {
+    this.authService.logout();
+  }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) return;

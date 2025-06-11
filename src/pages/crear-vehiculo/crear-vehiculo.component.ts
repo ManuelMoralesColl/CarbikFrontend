@@ -18,8 +18,7 @@ import {
   IonContent,
   IonSelect,
   IonSelectOption,
-  IonCheckbox  
-} from "@ionic/angular/standalone";
+  IonCheckbox, IonFooter } from "@ionic/angular/standalone";
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -27,7 +26,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './crear-vehiculo.component.html',
   styleUrls: ['./crear-vehiculo.component.scss'],
   standalone: true,
-  imports: [
+  imports: [IonFooter, 
     IonCol,
     IonHeader,
     IonButton,
@@ -89,7 +88,9 @@ idSeccionSeleccionada: number | null = null;  modelo = '';
       }
     });
   }
-
+  cerrarSesion() {
+    this.authService.logout();
+  }
   crearVehiculo() {
     const userId = this.authService.getUserIdFromToken();
     const token = this.authService.obtenerToken();

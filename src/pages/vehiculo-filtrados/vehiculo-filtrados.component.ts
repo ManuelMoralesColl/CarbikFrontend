@@ -10,16 +10,16 @@ import {
   IonContent,
   IonList,
   IonAvatar,
-  IonButton,
-} from '@ionic/angular/standalone';
-import { NgFor, NgIf } from '@angular/common';
+  IonButton, IonGrid, IonRow, IonCol, IonFooter, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-vehiculo-filtrados',
   templateUrl: './vehiculo-filtrados.component.html',
   styleUrls: ['./vehiculo-filtrados.component.scss'],
   standalone: true,
-  imports: [
+  imports: [IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonFooter, IonCol, IonRow, IonGrid, 
     IonButton,
     IonAvatar,
     IonList,
@@ -33,14 +33,17 @@ import { NgFor, NgIf } from '@angular/common';
     NgFor,
     NgIf,
     RouterLink,
+    CommonModule
   ],
 })
 export class VehiculoFiltradosComponent implements OnInit {
   vehiculos: any[] = [];
   backendUrl = 'http://localhost:8080/api/archivos'; // o ajusta si tu endpoint es diferente
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
-
+  constructor(private route: ActivatedRoute, private http: HttpClient,private authService: AuthService) {}
+  cerrarSesion() {
+    this.authService.logout();
+  }
   ngOnInit() {
     const seccionId = this.route.snapshot.paramMap.get('id');
     if (seccionId) {

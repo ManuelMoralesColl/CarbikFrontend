@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/services/auth.service';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,8 @@ import { CommonModule } from '@angular/common';
     IonButton, IonCol, IonContent, IonGrid, IonHeader,
     IonInput, IonItem, IonLabel, IonRow, IonSelect,
     IonSelectOption, IonTitle, IonToolbar,
-    FormsModule, CommonModule,IonTextarea,IonCheckbox
+    FormsModule, CommonModule,IonTextarea,IonCheckbox,
+    RouterLink
   ]
 })
 export class EditarVehiculoComponent implements OnInit {
@@ -44,7 +45,9 @@ export class EditarVehiculoComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {}
-
+  cerrarSesion() {
+    this.authService.logout();
+  }
   ngOnInit() {
     this.vehiculoId = +this.route.snapshot.paramMap.get('id')!;
     this.cargarVehiculo();

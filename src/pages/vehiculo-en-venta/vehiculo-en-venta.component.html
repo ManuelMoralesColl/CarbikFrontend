@@ -1,13 +1,17 @@
+<!-- Asegúrate de tener Font Awesome en tu index.html -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 <ion-header class="header-custom">
   <ion-toolbar>
     <div class="header-container">
-      <button class="header-btn header-left" [routerLink]="['/siguiendo']">
+      <button class="header-btn header-left" [routerLink]="['/home']">
         <i class="fas fa-user-friends"></i>
-        <span>Siguiendo</span>
+        <span>Global</span>
       </button>
 
       <div class="header-title">
-        <img src="/assets/logoRueda.png" alt="Logo" />
+        <img src="/assets/logoRueda.png" alt="" />
       </div>
 
       <button class="header-btn cerrar-sesion" (click)="cerrarSesion()">
@@ -17,6 +21,9 @@
     </div>
   </ion-toolbar>
 </ion-header>
+<div class="titulo-seccion">
+  <h1><strong>Vehículos en Venta</strong></h1>
+</div>
 
 <ion-content class="ion-padding main-feed">
   <ion-grid fixed>
@@ -26,14 +33,16 @@
         size-md="4"
         size-lg="4"
         *ngFor="let vehiculo of vehiculos">
-     <ion-avatar>
-        <img *ngIf="vehiculo.usuario?.fotoPerfil" [src]="backendUrl + vehiculo.usuario.fotoPerfil">
-      </ion-avatar>
-      <h2>
-        <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
-          {{ vehiculo.usuario?.nombreUsuario }}
-        </a>
-      </h2>
+      <div class="usuario-info">
+          <ion-avatar>
+            <img [src]="vehiculo.usuario.fotoPerfil ? backendUrl + vehiculo.usuario.fotoPerfil : '/assets/default-user.png'"/>        
+          </ion-avatar>
+          <h2>
+            <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
+              {{ vehiculo.usuario?.nombreUsuario }}
+            </a>
+          </h2>
+        </div>
         <ion-card class="vehiculo-card">
            <img
         *ngFor="let foto of vehiculo.fotos"
@@ -48,14 +57,7 @@
           </ion-card-header>
           <ion-card-content>
             <p>{{ vehiculo.descripcion }}</p>
-            <ion-button
-              expand="block"
-              fill="outline"
-              color="primary"
-              [routerLink]="['/vehiculo', vehiculo.id]"
-            >
-              Ver Detalles
-            </ion-button>
+  
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -75,7 +77,6 @@
     </div>
     <div class="footer-right">
       <a href="#" class="footer-link">Política de Privacidad</a>
-      <a href="#" class="footer-link">Contacto</a>
     </div>
   </div>
 </ion-footer>

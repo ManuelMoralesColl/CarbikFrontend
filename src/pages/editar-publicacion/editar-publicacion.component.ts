@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PerfilService } from 'src/services/perfil.service';
 import { Publicacion } from 'src/models/publicacion.model';
 import { IonicModule } from '@ionic/angular';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-editar-publicacion',
@@ -14,7 +15,8 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterLink
   ]
 })
 export class EditarPublicacionComponent  implements OnInit {
@@ -27,19 +29,23 @@ export class EditarPublicacionComponent  implements OnInit {
   seccion: null,      // o un objeto Seccion si lo tienes
   fotos: []
 };
+  
 
 
   constructor(
     private route: ActivatedRoute,
     private perfilService: PerfilService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.cargarPublicacion(id);
   }
-
+  cerrarSesion() {
+    this.authService.logout();
+  }
   cargarPublicacion(id: number) {
     this.perfilService.obtenerMiPerfil().subscribe({
       next: (data) => {

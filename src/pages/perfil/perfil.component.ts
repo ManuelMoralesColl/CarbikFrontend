@@ -13,14 +13,14 @@ import { PerfilService } from 'src/services/perfil.service';
 import { 
   IonHeader, IonItem, IonContent, IonToolbar, IonLabel, 
   IonInput, IonCard, IonCardHeader,  
-  IonToggle,  IonApp } from "@ionic/angular/standalone";
+  IonToggle,  IonApp, IonFooter } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
   standalone: true,
-  imports: [IonApp, 
+  imports: [IonFooter, IonApp, 
     CommonModule,
     FormsModule,
     IonHeader,
@@ -33,7 +33,7 @@ import {
     IonInput,
     IonToggle,
     RouterLink,
-    
+    IonFooter
   ]
 })
 export class PerfilComponent implements OnInit {

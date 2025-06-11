@@ -1,32 +1,82 @@
-<ion-header>
+<!-- Asegúrate de tener Font Awesome en tu index.html -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<ion-header class="header-custom">
   <ion-toolbar>
-    <ion-title>Vehículos filtrados</ion-title>
+    <div class="header-container">
+      <button class="header-btn header-left" [routerLink]="['/home']">
+        <i class="fas fa-user-friends"></i>
+        <span>Global</span>
+      </button>
+
+      <div class="header-title">
+        <img src="/assets/logoRueda.png" alt="" />
+      </div>
+
+      <button class="header-btn cerrar-sesion" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
   </ion-toolbar>
 </ion-header>
-<ion-button expand="block" color="medium" [routerLink]="['/home']">
-  🏠 Volver a Inicio
-</ion-button>
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let vehiculo of vehiculos">
-      <ion-avatar>
-    <img [src]="vehiculo.usuario?.fotoPerfil? (backendUrl + vehiculo.usuario?.fotoPerfil) : '/assets/default-user.png'">   
-    </ion-avatar>
-  <h2>
-    <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
-      {{ vehiculo.usuario?.nombreUsuario }}
-    </a>
-  </h2>
-      <img 
-      *ngFor="let foto of vehiculo.fotos" 
-      [src]="backendUrl + foto.url" 
-      alt="Foto de publicación" 
-      style="width: 100%; margin-bottom: 10px;" />      <ion-label>
-        <h2>{{ vehiculo.modelo }} - {{ vehiculo.marca }}</h2>
-        <p>{{ vehiculo.descripcion }}</p>
-        <p><strong>Precio:</strong> {{ vehiculo.precio }} €</p>
-      </ion-label>
-    </ion-item >
-    
-  </ion-list>
+<div class="titulo-seccion">
+  <h1><strong>Vehículos en Venta</strong></h1>
+</div>
+
+<ion-content class="ion-padding main-feed">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col
+        size="12"
+        size-md="4"
+        size-lg="4"
+        *ngFor="let vehiculo of vehiculos">
+      <div class="usuario-info">
+          <ion-avatar>
+            <img [src]="vehiculo.usuario.fotoPerfil ? backendUrl + vehiculo.usuario.fotoPerfil : '/assets/default-user.png'"/>        
+          </ion-avatar>
+          <h2>
+            <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
+              {{ vehiculo.usuario?.nombreUsuario }}
+            </a>
+          </h2>
+        </div>
+        <ion-card class="vehiculo-card">
+           <img
+        *ngFor="let foto of vehiculo.fotos"
+        [src]="backendUrl + foto.url"
+        alt="Foto de vehículo"
+        style="width: 100%; margin-bottom: 10px;"/>
+          <ion-card-header>
+            <ion-card-title>
+              {{ vehiculo.marca }} {{ vehiculo.modelo }}
+            </ion-card-title>
+            <ion-card-subtitle>{{ vehiculo.anio }} | {{ vehiculo.precio | currency:'EUR' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ vehiculo.descripcion }}</p>
+  
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer class="footer-custom">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="footer-link"><i class="fab fa-facebook"></i></a>
+    </div>
+    <div class="footer-center">
+      <span>© 2025 CARBIK</span>
+    </div>
+    <div class="footer-right">
+      <a href="#" class="footer-link">Política de Privacidad</a>
+    </div>
+  </div>
+</ion-footer>

@@ -55,6 +55,9 @@ export class PerfilVisitadoComponent implements OnInit {
   }
   
 }
+ cerrarSesion() {
+    this.authService.logout();
+  }
 cargarPerfilDeUsuario(id: number) {
   this.perfilService.obtenerPerfilPorId(id).subscribe(data => {
     // Si el backend devuelve directamente el usuario (no un objeto con 'usuario' dentro):

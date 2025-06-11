@@ -1,11 +1,28 @@
-<ion-header>
+<!-- Asegúrate de tener Font Awesome en tu index.html -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+<ion-header class="header-custom">
   <ion-toolbar>
-    <ion-title>Editar Publicación</ion-title>
+    <div class="header-container">
+      <button class="header-btn header-left" [routerLink]="['/perfil/+this.publicacion.usuario?.id']">
+        <i class="fas fa-user-friends"></i>
+        <span>Volver</span>
+      </button>
+
+      <div class="header-title">
+        <img src="/assets/logoRueda.png" alt="" />
+      </div>
+
+      <button class="header-btn cerrar-sesion" (click)="cerrarSesion()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
   </ion-toolbar>
 </ion-header>
-  <ion-button expand="full" color="medium" (click)="salir()">
-      Perfil
-  </ion-button>
+
   <ion-content class="ion-padding">
   <ion-card>
     <ion-card-header>
@@ -26,3 +43,25 @@
   </ion-button>
   </ion-card>
 </ion-content>
+
+<ion-footer class="footer-custom">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="#" class="footer-link">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="footer-link">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="footer-link">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
+    <div class="footer-center">
+      <span>© 2025 CARBIK</span>
+    </div>
+    <div class="footer-right">
+      <a href="#" class="footer-link">Política de Privacidad</a>
+    </div>
+  </div>
+</ion-footer>
