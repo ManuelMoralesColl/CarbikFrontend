@@ -35,16 +35,17 @@
         *ngFor="let vehiculo of vehiculos">
       <div class="usuario-info">
           <ion-avatar>
-            <img [src]="vehiculo.usuario.fotoPerfil ? backendUrl + vehiculo.usuario.fotoPerfil : '/assets/default-user.png'"/>        
+            <img class="publicacion-imagen" [src]="vehiculo.usuario.fotoPerfil ? backendUrl + vehiculo.usuario.fotoPerfil : '/assets/default-user.png'"/>        
           </ion-avatar>
-          <h2>
+          <h2> 
             <a [routerLink]="['/perfilUsuario', vehiculo.usuario.id]" style="text-decoration: none; color: inherit;">
               {{ vehiculo.usuario?.nombreUsuario }}
             </a>
           </h2>
         </div>
+
         <ion-card class="vehiculo-card">
-           <img
+           <img class="vehiculo-imagen"
         *ngFor="let foto of vehiculo.fotos"
         [src]="backendUrl + foto.url"
         alt="Foto de vehículo"

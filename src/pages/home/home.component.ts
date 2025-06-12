@@ -130,7 +130,7 @@ export class HomeComponent implements OnInit {
       { id: 14, nombre: 'Clásico' },
       { id: 15, nombre: 'Hatchback' },
       { id: 16, nombre: 'Coupé' },
-      { id: 29, nombre: 'Moto de agua' },
+    //  { id: 29, nombre: 'Moto de agua' },
     ],
     2: [
       { id: 17, nombre: 'Deportivas' },

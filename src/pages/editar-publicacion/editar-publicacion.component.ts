@@ -71,5 +71,6 @@ export class EditarPublicacionComponent  implements OnInit {
       },
       error: (err) => console.error('Error actualizando publicación', err)
     });
+    this.salir(); 
   }
 }

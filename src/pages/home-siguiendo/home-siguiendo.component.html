@@ -68,6 +68,22 @@
       </ion-col>
 
       <!-- Columna central: Publicaciones -->
+ <!-- Si no hay publicaciones -->
+  <ng-container *ngIf="!cargando && publicaciones.length === 0; else mostrarPublicaciones">
+    <div class="no-publicaciones-msg">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>No sigues a nadie</ion-card-title>
+        </ion-card-header>
+        <div class="ion-padding">
+          Empieza a seguir a otros usuarios para ver sus publicaciones aquí.
+        </div>
+      </ion-card>
+    </div>
+  </ng-container>
+
+  <!-- Si hay publicaciones -->
+  <ng-template #mostrarPublicaciones>
       <ion-col size="12" size-md="6" class="feed-main">
         <ion-card *ngFor="let pub of publicaciones" class="publicacion-card">
           <div class="pub-header-row">
@@ -102,6 +118,7 @@
           </div>
         </ion-card>
       </ion-col>
+  </ng-template>
 
       <!-- Columna derecha: Acciones y filtros -->
       <ion-col size="12" size-md="3" class="feed-right">

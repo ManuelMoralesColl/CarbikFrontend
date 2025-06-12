@@ -344,6 +344,14 @@ $shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
   padding: 0 0.5rem;
   margin-bottom: 5rem;
 }
+.no-publicaciones-msg {
+  text-align: center;
+  margin-top: 2rem;
+  ion-card {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+}
 
 // Publicación: header en línea
 .publicacion-card {
